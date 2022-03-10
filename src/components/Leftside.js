@@ -37,8 +37,9 @@ function Leftside() {
                     <span>Groups</span>
                 </a>
                 <a>
-                    <span>Events</span>
-                    <img src="images/plus-icon.svg" alt="" />
+                    <span>Events
+                        <img src="images/plus-icon.svg" alt="" />
+                    </span>
                 </a>
                 <a>
                     <span>Follow Hastags</span>
@@ -166,7 +167,7 @@ const Item = styled.a`
         color: rgba(0, 0, 0, 1);
     }
     &:hover {
-        background-color: rgba(0, 0, 0, 0.06);;
+        background-color: rgba(0, 0, 0, 0.06);
     }
 `
 
@@ -175,4 +176,31 @@ const CommunityCard = styled(ArtCard)`
     text-align: left;
     display: flex;
     flex-direction: column;
+
+    a {
+        color: black;
+        padding: 4px 12px 4px 12px;
+        font-size: 14px; 
+
+        &:hover {
+            color: #0a66c2;
+        }
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &:last-child {
+            color: rgba(0, 0, 0, 0.6);
+            text-decoration: none;
+            border-top: 1px solid #d6cec2;
+            padding: 12px;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.06);
+
+            }
+        }
+    }
 `
