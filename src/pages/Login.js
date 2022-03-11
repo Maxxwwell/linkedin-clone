@@ -1,11 +1,18 @@
 import { Button } from '@mui/material'
 import React from 'react'
-import styled from 'styled-components'
+import { connect } from 'react-redux';
+import { Navigate } from 'react-router';
+import styled from 'styled-components';
+import { signInAPI } from '../actions';
 
-function Login() {
+
+function Login(props) {
+
   return (
     <Container>
-
+      {
+        props.user && <Navigate to="/" />
+      }
       <Nav>
         <img src="/images/LinkedIn_Logo.svg.png" alt="logo" />
         <Buttons>
@@ -27,12 +34,13 @@ function Login() {
         </Hero>
 
         <Form>
-            <Button variant="outlined">
-              <span>
-                <img src="images/google.jpg" alt="" />
-                <p>Sign in with Google</p>
-              </span>
-            </Button>
+          <Button variant="outlined"
+            onClick={() => props.signIn()}>
+            <span>
+              <img src="images/google.svg" alt="" />
+              <p>Sign in with Google</p>
+            </span>
+          </Button>
         </Form>
 
       </Section>
@@ -41,7 +49,17 @@ function Login() {
   )
 }
 
-export default Login
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  signIn: () => dispatch(signInAPI()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 const Container = styled.div`
   padding: 0px;

@@ -55,7 +55,14 @@ function Rightside() {
 export default Rightside;
 
 const Container = styled.div`
+    width: 20%;
+    margin-left: 20px;
 
+
+    @media (max-width: 768px) {
+    width: 100%;
+    margin-left: 2px;
+  }
 `
 const FollowCard = styled.div`
     text-align: center;

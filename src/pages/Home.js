@@ -33,7 +33,9 @@ export default Home
 
 const Container = styled.div`
     padding-top: 52px;
-    max-width: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 `
 
 const Section = styled.div`
@@ -68,17 +70,17 @@ const Section = styled.div`
 
 const Layout = styled.div`
   display: flex;
-  width: auto;
+  /* width: 100vw; */
   height: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  justify-content: space-between;
+  justify-content: center;
   grid-template-rows: auto;
-  margin: 25px 0;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     padding: 0 5px;
+    margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   }
 `
 

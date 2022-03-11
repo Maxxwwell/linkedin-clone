@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 import { Avatar } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { connect } from 'react-redux';
 
 function Header(props) {
 
@@ -46,12 +47,20 @@ function Header(props) {
                             <span>Notifications</span>
                         </a>
                         <User>
-                            <Avatar style={{ width: '30px', height: "30px" }} />
-                            <ArrowDropDownIcon onClick={""} />
+                            <a>
+                                {props.user && props.user.photoURL ?
+                                    (<img src={props.user.photoURL} alt="" />
+                                    ) :
+                                    (<img src="images/user.svg" alt="" />)
+
+                                }
+                                <span>
+                                    Me
+                                </span>
+                                <ArrowDropDownIcon onClick={""} />
+                            </a>
                         </User>
-                        {/* <SignOut>
-                            <a>Sign Out</a>
-                        </SignOut> */}
+
 
                     </NavListWrap>
                 </Nav>
@@ -60,7 +69,15 @@ function Header(props) {
     )
 }
 
-export default Header
+const mapStateToProps = (state) => {
+    return {
+        user: state.userState.user,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 const Container = styled.div`
     background-color: white;
@@ -145,6 +162,7 @@ const SignOut = styled.div`
     font-size: 16px;
     transition-duration: 167ms;
     text-align: center;
+    display: none  ;
 `
 
 
@@ -217,12 +235,12 @@ const NavListWrap = styled.ul`
 const User = styled.div`
     margin-top: 5px;
     justify-content: center;
+    cursor: pointer;
 
-    &:hover {
-        ${SignOut} {
-           align-items : center;
-           display: flex;
-           justify-content: center;
-        }
+    img {
+        border-radius: 100%;
+
     }
 `
+
+

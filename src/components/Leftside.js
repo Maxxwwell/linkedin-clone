@@ -55,8 +55,8 @@ function Leftside() {
 export default Leftside;
 
 const Container = styled.div`
-    width: 15%;
-
+    width: 14%;
+    margin-right: 20px;
     @media (max-width: 768px) {
     width: 100%;
   }
