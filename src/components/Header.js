@@ -5,6 +5,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Avatar } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { connect } from 'react-redux';
+import { auth } from '../firebase';
+// import { signOutAPI } from '../actions';
 
 function Header(props) {
 
@@ -54,8 +56,8 @@ function Header(props) {
                                     (<img src="images/user.svg" alt="" />)
 
                                 }
-                                <span>
-                                    Me
+                                <span onClick={() => auth.signOut()}>
+                                    sign out
                                 </span>
                                 <ArrowDropDownIcon onClick={""} />
                             </a>
@@ -75,7 +77,9 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+    // SignOut: dispatch(signOutAPI())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 

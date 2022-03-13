@@ -2,19 +2,46 @@ import { Button } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import PostModal from './PostModal';
 
 
 function Middle() {
 
     const [liked, setLiked] = useState(false);
+    const [showModal, setShowModal] = useState("close");
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        if (event.target !== event.currentTarget) {
+            return;
+        }
+
+        switch (showModal) {
+            case "open":
+                setShowModal("close");
+                break;
+
+            case "close":
+                setShowModal("open");
+                break;
+            default:
+                setShowModal("close");
+                break;
+        }
+
+    }
 
     return (
         <Container>
             <SharedBox>
                 Share
                 <div>
-                <img src="images/user.svg" alt="" />
-                    <Button variant="outlined">Start a post</Button>
+                    <img src="images/user.svg" alt="" />
+                    <Button
+                        variant="outlined"
+                        onClick={handleClick}
+
+                    >Start a post</Button>
                 </div>
 
                 <div>
@@ -44,7 +71,7 @@ function Middle() {
                 <Article>
                     <SharedActor>
                         <a>
-                        <img src="images/user.svg" alt="" />
+                            <img src="images/user.svg" alt="" />
                             <div>
                                 <span>Title</span>
                                 <span>Info</span>
@@ -79,38 +106,39 @@ function Middle() {
                         <a>7 comments</a>
 
                     </SocialCount>
-        
-        <SocialActions>
-                    <Button onClick={() => setLiked(!liked)}>
-                        {liked ? <> <img src="images/liked.png" alt="" />
-                            <span>Like</span>
-                        </>
-                            :
-                            <>
-                                <img src="images/like.png" alt="" />
+
+                    <SocialActions>
+                        <Button onClick={() => setLiked(!liked)}>
+                            {liked ? <> <img src="images/liked.png" alt="" />
                                 <span>Like</span>
-
                             </>
-                        }
-                    </Button>
+                                :
+                                <>
+                                    <img src="images/like.png" alt="" />
+                                    <span>Like</span>
 
-                    <Button>
-                        <img src="images/comment.png" alt="" />
-                        <span> Comment </span>
-                    </Button>
+                                </>
+                            }
+                        </Button>
 
-                    <Button>
-                        <img src="images/arrow.png" alt="" />
-                        <span> Share </span>
-                    </Button>
+                        <Button>
+                            <img src="images/comment.png" alt="" />
+                            <span> Comment </span>
+                        </Button>
 
-                    <Button>
-                        <img src="images/send.png" alt="" />
-                        <span> Send </span>
-                    </Button>
+                        <Button>
+                            <img src="images/arrow.png" alt="" />
+                            <span> Share </span>
+                        </Button>
+
+                        <Button>
+                            <img src="images/send.png" alt="" />
+                            <span> Send </span>
+                        </Button>
                     </SocialActions>
                 </Article>
             </div>
+            <PostModal showModal={showModal} handleClick={handleClick} />
         </Container>
     )
 }
